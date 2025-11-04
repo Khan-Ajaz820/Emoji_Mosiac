@@ -1,0 +1,29 @@
+name: Optimize SVGs
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'sprite/**/*.svg'
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install svgo
+
+      - name: Optimize all SVGs
+        run: node optimize-svgs.js ./sprite ./optimized-emojis
+
+      - name: Upload optimized SVGs as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: optimized-emojis
+          path: ./optimized-emojis
