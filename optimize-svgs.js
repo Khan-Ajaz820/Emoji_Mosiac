@@ -2,7 +2,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const { optimize } = require('svgo');
 
-// Ultra-aggressive but visually-safe SVGO configuration
+// Uldtra-aggressive but visually-safe SVGO configuration
 const svgoConfig = {
   multipass: true, // Run optimizations multiple times for maximum compression
   plugins: [
